@@ -14,7 +14,6 @@ module Camperdown.Config.Build exposing
 import Camperdown.Config.Config exposing (ParserConfig)
 import Camperdown.Occurs exposing (Occurs(..))
 import List.Extra
-import Maybe.Extra
 import Set exposing (Set)
 
 
@@ -130,7 +129,7 @@ annotation startSymbol endSymbol occurs configObj =
         Nothing ->
             { configObj | errors = "Could not get start character" :: configObj.errors }
 
-        Just startChar ->
+        Just _ ->
             configObj
                 |> (\co -> { co | order = co.order + 1 })
                 |> ifApply (startSymbolIsInStartSymbols startSymbol) (transmitErrorOfExistingStartSymbol startSymbol)
@@ -141,6 +140,7 @@ annotation startSymbol endSymbol occurs configObj =
 {-| Actually construct the builder. Used above in `annotation` in
 the last stage of the `ifApply` pipeline.
 -}
+constructAnnotation : String -> String -> Occurs -> ParserConfigObject -> ParserConfigObject
 constructAnnotation startSymbol endSymbol occurs configObj =
     let
         oldPc =
@@ -258,22 +258,27 @@ makeAnnotationOpt startSymbol endSymbol occurs =
     { startSymbol = startSymbol, endSymbol = Just endSymbol, commandOccursAfterwards = occurs }
 
 
+automaticallyMeaningful : Set Char
 automaticallyMeaningful =
     Set.fromList [ '\\', ']', '\n' ]
 
 
+automaticallyEscapable : Set Char
 automaticallyEscapable =
     Set.fromList [ '\\', '[', ']', '!', '?', ':', '(', ')' ]
 
 
+standardVerbatimMarkers : List String
 standardVerbatimMarkers =
     [ "%%%", "$$$", "```" ]
 
 
+basicAnnotationFirstChars : Set Char
 basicAnnotationFirstChars =
     Set.fromList [ '"', '[' ]
 
 
+basicVerbatimOpts : Set Char
 basicVerbatimOpts =
     Set.fromList [ '`', '$' ]
 
@@ -304,7 +309,7 @@ minimal =
 addToSet : String -> Set Char -> Set Char
 addToSet startSymbol annotationFirstChars =
     case String.uncons startSymbol of
-        Just ( c, remaining ) ->
+        Just ( c, _ ) ->
             Set.insert c annotationFirstChars
 
         Nothing ->
@@ -321,12 +326,8 @@ firstChars set =
 
 firstChar : String -> Maybe Char
 firstChar str =
-    case String.uncons str of
-        Just ( c, _ ) ->
-            Just c
-
-        Nothing ->
-            Nothing
+    String.uncons str
+        |> Maybe.map Tuple.first
 
 
 unionOfSetList : List (Set comparable) -> Set comparable

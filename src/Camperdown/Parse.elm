@@ -1,8 +1,9 @@
 module Camperdown.Parse exposing (parse)
 
-{-| Placeholder 
+{-| Placeholder
 
 @docs parse
+
 -}
 
 import Camperdown.Config.Config as Config

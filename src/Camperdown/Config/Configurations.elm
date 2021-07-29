@@ -6,13 +6,15 @@ module Camperdown.Config.Configurations exposing (l0, markup, minimal, standard)
 import Camperdown.Config.Build as Build exposing (build, parserConfigFromResult)
 import Camperdown.Config.Config exposing (ParserConfig)
 import Camperdown.Occurs exposing (Occurs(..))
-import Set exposing (Set)
+import Set
 
 
+standard : ParserConfig
 standard =
     Camperdown.Config.Config.config
 
 
+markup : ParserConfig
 markup =
     parserConfigFromResult <|
         build
@@ -25,6 +27,7 @@ markup =
             ]
 
 
+minimal : ParserConfig
 minimal =
     Build.minimal
 
