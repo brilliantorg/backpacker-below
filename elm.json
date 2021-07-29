@@ -1,0 +1,18 @@
+{
+  "type": "package",
+  "name": "brilliantorg/depressed-backpacker",
+  "summary": "Placeholder",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "exposed-modules": ["Camperdown.Parse.Syntax", "Camperdown.Parse"],
+  "elm-version": "0.19.1 <= v < 0.20.0",
+  "dependencies": {
+    "elm/core": "1.0.5 <= v < 2.0.0",
+    "elm/parser": "1.1.0 <= v < 2.0.0",
+    "elm-community/list-extra": "8.3.1 <= v < 9.0.0"
+  },
+  "test-dependencies": {
+    "elm-community/maybe-extra": "5.2.0 <= v < 6.0.0",
+    "elm-explorations/test": "1.2.2 <= v < 2.0.0"
+  }
+}
