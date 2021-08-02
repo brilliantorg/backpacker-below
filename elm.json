@@ -1,8 +1,8 @@
 {
   "type": "package",
-  "name": "brilliantorg/depressed-backpacker",
+  "name": "brilliantorg/backpacker-below",
   "summary": "Placeholder",
-  "license": "GPL-3.0",
+  "license": "BSD-3-Clause",
   "version": "1.0.0",
   "exposed-modules": ["Camperdown.Parse.Syntax", "Camperdown.Parse"],
   "elm-version": "0.19.1 <= v < 0.20.0",
