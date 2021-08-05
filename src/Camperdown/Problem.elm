@@ -1,8 +1,14 @@
 module Camperdown.Problem exposing (Inline(..), inlineToString)
 
+{-|
+
+@docs Inline, inlineToString
+
+-}
+
 import Camperdown.Loc as Loc exposing (Loc, Location)
 
-
+{-| -}
 type Inline
     = BadEscapeChar (Loc String)
     | VerbatimDoesNotFinish { expectedEndmark : String, loc : Location }
@@ -16,7 +22,7 @@ type Inline
     | InvalidAnnotation (Loc ( String, Maybe String )) (Maybe (Loc (Maybe (Loc String))))
     | InvalidParameter (Loc String)
 
-
+{-| -}
 inlineToString : Inline -> ( Loc.Location, String )
 inlineToString problem =
     case problem of
