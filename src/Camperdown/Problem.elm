@@ -8,6 +8,7 @@ module Camperdown.Problem exposing (Inline(..), inlineToString)
 
 import Camperdown.Loc as Loc exposing (Loc, Location)
 
+
 {-| -}
 type Inline
     = BadEscapeChar (Loc String)
@@ -21,6 +22,7 @@ type Inline
     | InvalidVerbatimChar (Loc Char)
     | InvalidAnnotation (Loc ( String, Maybe String )) (Maybe (Loc (Maybe (Loc String))))
     | InvalidParameter (Loc String)
+
 
 {-| -}
 inlineToString : Inline -> ( Loc.Location, String )

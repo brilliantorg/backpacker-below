@@ -38,7 +38,9 @@ type alias ParserConfig =
     , verbatimMarkers : List String
     }
 
-{-| The standard configuration -}
+
+{-| The standard configuration
+-}
 config : ParserConfig
 config =
     { verbatimOpts = Set.fromList [ '`', '$' ]
@@ -79,7 +81,9 @@ config =
     , verbatimMarkers = [ "%%%", "$$$", "```" ]
     }
 
-{-| An alternate configuration -}
+
+{-| An alternate configuration
+-}
 config2 : ParserConfig
 config2 =
     { verbatimOpts = Set.fromList [ '`', '$' ]
