@@ -1,6 +1,10 @@
 module Camperdown.Config.Config exposing (ParserConfig, config, config2)
 
--- createParserConfig)
+{-|
+
+@docs ParserConfig, config, config2
+
+-}
 
 import Camperdown.Occurs exposing (Occurs(..))
 import Set exposing (Set)
@@ -34,7 +38,7 @@ type alias ParserConfig =
     , verbatimMarkers : List String
     }
 
-
+{-| The standard configuration -}
 config : ParserConfig
 config =
     { verbatimOpts = Set.fromList [ '`', '$' ]
@@ -75,7 +79,7 @@ config =
     , verbatimMarkers = [ "%%%", "$$$", "```" ]
     }
 
-
+{-| An alternate configuration -}
 config2 : ParserConfig
 config2 =
     { verbatimOpts = Set.fromList [ '`', '$' ]
