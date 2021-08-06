@@ -4,7 +4,6 @@ import Camperdown.Config.Configurations exposing (markup)
 import Camperdown.Parse exposing (parse)
 import Camperdown.Parse.Syntax exposing (..)
 import List.Extra
-import Maybe.Extra
 
 
 {-|
@@ -17,7 +16,7 @@ getAnnotationPipeline doc =
     doc
         |> .prelude
         |> List.map paragraphContents
-        |> Maybe.Extra.values
+        |> List.filterMap identity
         |> List.head
         |> Maybe.withDefault []
         |> List.head

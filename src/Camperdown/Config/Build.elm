@@ -320,7 +320,7 @@ firstChars : List String -> Set Char
 firstChars set =
     set
         |> List.map firstChar
-        |> Maybe.Extra.values
+        |> List.filterMap identity
         |> Set.fromList
 
 

@@ -224,7 +224,7 @@ pickCommandElement offset start a b end =
                             , inStringParse = False
                             }
 
-            else if Char.isUpper ch || Char.isLower ch then
+            else if not (Char.isUpper ch || Char.isLower ch) then
                 Problem
                     { errorMessage = "I don't know how to understand `" ++ str ++ "`. It doesn't look like a number, an identifier, or a special symbol that I know about."
                     , inStringParse = False
