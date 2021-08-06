@@ -224,13 +224,7 @@ pickCommandElement offset start a b end =
                             , inStringParse = False
                             }
 
-            else if Char.isUpper ch then
-                Problem
-                    { errorMessage = "I think you want me to treat `" ++ str ++ "` as an identifier, but it doesn't start with a lowercase letter."
-                    , inStringParse = False
-                    }
-
-            else if not <| Char.isLower ch then
+            else if (Char.isUpper ch || Char.isLower ch) then
                 Problem
                     { errorMessage = "I don't know how to understand `" ++ str ++ "`. It doesn't look like a number, an identifier, or a special symbol that I know about."
                     , inStringParse = False
@@ -243,7 +237,7 @@ pickCommandElement offset start a b end =
 
                     bad :: _ ->
                         Problem
-                            { errorMessage = "Because it starts with a lowercase letter, I want to treat `" ++ str ++ "` as an identifier, but the character `" ++ String.fromChar bad ++ "` is not allowed inside of an identifier."
+                            { errorMessage = "Because it starts with a letter, I want to treat `" ++ str ++ "` as an identifier, but the character `" ++ String.fromChar bad ++ "` is not allowed inside of an identifier."
                             , inStringParse = False
                             }
     )
