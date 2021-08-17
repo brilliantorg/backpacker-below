@@ -1,6 +1,6 @@
 module Camperdown.Parse.Pieces exposing (Ending(..), Piece, PieceType(..), pieces)
 
-import Camperdown.Config.Config as Config
+import Camperdown.Config exposing (Config)
 import Camperdown.Loc as Loc exposing (Loc)
 import Camperdown.Parse.Line as Line exposing (FirstLine, Line, Lines)
 import Camperdown.Parse.Parse as Parse
@@ -14,10 +14,6 @@ import Parser.Advanced
 
    See PARSE.md for details
 -}
-
-
-type alias Config =
-    Config.ParserConfig
 
 
 type Ending

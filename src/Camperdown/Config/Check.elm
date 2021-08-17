@@ -1,6 +1,6 @@
 module Camperdown.Config.Check exposing (check, isValid)
 
-import Camperdown.Config.Config exposing (ParserConfig)
+import Camperdown.Config exposing (Config)
 import Set
 
 
@@ -10,7 +10,7 @@ type alias ConfigResult =
 
 {-| True if and only if the config satisies the rules.
 -}
-isValid : ParserConfig -> Bool
+isValid : Config -> Bool
 isValid config =
     [] == List.filter (\result -> not (isOk result)) (check config)
 
@@ -19,12 +19,12 @@ isValid config =
 rules: either (Err <reason why a rule is not satisfied) or
 (Ok <short descrption of rule>).
 -}
-check : ParserConfig -> List ConfigResult
+check : Config -> List ConfigResult
 check config =
     List.map (\f -> f config) rules
 
 
-rules : List (ParserConfig -> ConfigResult)
+rules : List (Config -> ConfigResult)
 rules =
     [ rightBracketNotInAnnotationFirstChars
     , annotationStartSymbolsAppearInAnnotationFirstChars
@@ -39,7 +39,7 @@ rules =
 --    config.escapable == Set.union config.meaningful
 
 
-rightBracketNotInAnnotationFirstChars : ParserConfig -> ConfigResult
+rightBracketNotInAnnotationFirstChars : Config -> ConfigResult
 rightBracketNotInAnnotationFirstChars config =
     if Set.member ']' config.annotationFirstChars then
         Err "']' cannot be a member of annotationFirstChars"
@@ -48,7 +48,7 @@ rightBracketNotInAnnotationFirstChars config =
         Ok "annotationFirstChars does not contain ']'"
 
 
-annotationStartSymbolsAppearInAnnotationFirstChars : ParserConfig -> ConfigResult
+annotationStartSymbolsAppearInAnnotationFirstChars : Config -> ConfigResult
 annotationStartSymbolsAppearInAnnotationFirstChars config =
     let
         annotationStartSymbols =
@@ -67,7 +67,7 @@ annotationStartSymbolsAppearInAnnotationFirstChars config =
         Err <| "These characters appear in 'annotationOpts' but not in 'annotationFirstChars': " ++ differenceReport
 
 
-annotationStartSymbolsAppearInMeaningfulCharacters : ParserConfig -> ConfigResult
+annotationStartSymbolsAppearInMeaningfulCharacters : Config -> ConfigResult
 annotationStartSymbolsAppearInMeaningfulCharacters config =
     let
         annotationStartSymbols =

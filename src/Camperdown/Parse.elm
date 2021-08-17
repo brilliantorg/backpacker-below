@@ -6,7 +6,7 @@ module Camperdown.Parse exposing (parse)
 
 -}
 
-import Camperdown.Config.Config as Config
+import Camperdown.Config exposing (Config)
 import Camperdown.Parse.Hierarchy as Hierarchy
 import Camperdown.Parse.Pieces as Pieces
 import Camperdown.Parse.Sections as Sections
@@ -20,7 +20,7 @@ the elements in the prelude (part of the file before the first `#` marker) follo
 the parsed sections.
 
 -}
-parse : Config.ParserConfig -> String -> Syn.Document
+parse : Config -> String -> Syn.Document
 parse config file =
     let
         {- Parsing pipeline:

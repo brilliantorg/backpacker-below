@@ -1,6 +1,6 @@
 module Camperdown.Parse.Parse exposing (CommandParseResult(..), Continuation(..), lineCommand, lineItem, paragraph)
 
-import Camperdown.Config.Config as Config
+import Camperdown.Config exposing (Config)
 import Camperdown.Loc as Loc exposing (Loc)
 import Camperdown.Occurs exposing (Occurs(..))
 import Camperdown.Parse.CommandElement as CommandElement exposing (parseCommandElement)
@@ -12,10 +12,6 @@ import Camperdown.Util exposing (Parser, loop, return)
 import List.Extra as List
 import Parser.Advanced as Parser exposing ((|.), (|=))
 import Set exposing (Set)
-
-
-type alias Config =
-    Config.ParserConfig
 
 
 

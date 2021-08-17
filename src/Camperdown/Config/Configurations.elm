@@ -3,18 +3,19 @@ module Camperdown.Config.Configurations exposing (l0, markup, minimal, standard)
 {-| All configs except 'built' yield 'True' on application of 'Check.isValid'
 -}
 
+import Camperdown.Config exposing (Config)
 import Camperdown.Config.Build as Build exposing (build, parserConfigFromResult)
-import Camperdown.Config.Config exposing (ParserConfig)
+import Camperdown.Config.Config
 import Camperdown.Occurs exposing (Occurs(..))
 import Set
 
 
-standard : ParserConfig
+standard : Config
 standard =
     Camperdown.Config.Config.config
 
 
-markup : ParserConfig
+markup : Config
 markup =
     parserConfigFromResult <|
         build
@@ -27,12 +28,12 @@ markup =
             ]
 
 
-minimal : ParserConfig
+minimal : Config
 minimal =
     Build.minimal
 
 
-l0 : ParserConfig
+l0 : Config
 l0 =
     { verbatimOpts = Set.fromList [ '`', '$' ]
     , annotationOpts =

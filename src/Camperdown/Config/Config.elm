@@ -1,11 +1,12 @@
-module Camperdown.Config.Config exposing (ParserConfig, config, config2)
+module Camperdown.Config.Config exposing (config, config2)
 
 {-|
 
-@docs ParserConfig, config, config2
+@docs config, config2
 
 -}
 
+import Camperdown.Config exposing (Config)
 import Camperdown.Occurs exposing (Occurs(..))
 import Set exposing (Set)
 
@@ -14,34 +15,9 @@ import Set exposing (Set)
 -- CONFIGURATION
 
 
-{-| Markup parsing configuration
-
-  - `lineOffset`: difference between what the parser will report as a line position
-    and the actual line position, since this is used to parse file fragments
-  - `escapable`: Escapable characters in markup text are:
-      - Always: `\`, \`\`\``,`!`,`#`,`[`,`]`,`(`,`)\`
-      - Verbatim or annotation capture characters
-      - The first character in a replacement
-
--}
-type alias ParserConfig =
-    { verbatimOpts : Set Char
-    , annotationOpts :
-        List
-            { startSymbol : String
-            , endSymbol : Maybe String
-            , commandOccursAfterwards : Occurs
-            }
-    , annotationFirstChars : Set Char
-    , escapable : Set Char
-    , meaningful : Set Char
-    , verbatimMarkers : List String
-    }
-
-
 {-| The standard configuration
 -}
-config : ParserConfig
+config : Config
 config =
     { verbatimOpts = Set.fromList [ '`', '$' ]
     , annotationOpts =
@@ -84,7 +60,7 @@ config =
 
 {-| An alternate configuration
 -}
-config2 : ParserConfig
+config2 : Config
 config2 =
     { verbatimOpts = Set.fromList [ '`', '$' ]
     , annotationOpts =

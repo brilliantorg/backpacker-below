@@ -11,7 +11,7 @@ module Camperdown.Config.Build exposing
     , unionOfSetList
     )
 
-import Camperdown.Config.Config exposing (ParserConfig)
+import Camperdown.Config exposing (Config)
 import Camperdown.Occurs exposing (Occurs(..))
 import List.Extra
 import Set exposing (Set)
@@ -20,13 +20,13 @@ import Set exposing (Set)
 {-| Used in the build process to carry state.
 -}
 type alias ParserConfigObject =
-    { pc : ParserConfig, errors : List String, order : Int, reOrder : List Int }
+    { pc : Config, errors : List String, order : Int, reOrder : List Int }
 
 
 {-| Attempt to build a parser config. Succeed with `Ok config`, faile with
 `Err errorlList`.
 -}
-build : List (ParserConfigObject -> ParserConfigObject) -> Result (List String) ParserConfig
+build : List (ParserConfigObject -> ParserConfigObject) -> Result (List String) Config
 build builders =
     List.foldl (\builder config -> builder config) { pc = minimal, errors = [], order = -1, reOrder = [] } builders
         |> resultFromParserConfigObj
@@ -35,7 +35,7 @@ build builders =
 {-| dAn unsafe builder of parser configurations: error checking is ignored,
 and so the configuation _may_ be invalid. Used for testing
 -}
-buildSomething : List (ParserConfigObject -> ParserConfigObject) -> ParserConfig
+buildSomething : List (ParserConfigObject -> ParserConfigObject) -> Config
 buildSomething builders =
     case build builders of
         Err _ ->
@@ -49,7 +49,7 @@ buildSomething builders =
 -- MAPPERS
 
 
-resultFromParserConfigObj : ParserConfigObject -> Result (List String) ParserConfig
+resultFromParserConfigObj : ParserConfigObject -> Result (List String) Config
 resultFromParserConfigObj pco =
     if pco.errors == [] then
         Ok pco.pc
@@ -58,7 +58,7 @@ resultFromParserConfigObj pco =
         Err pco.errors
 
 
-parserConfigFromResult : Result (List String) ParserConfig -> ParserConfig
+parserConfigFromResult : Result (List String) Config -> Config
 parserConfigFromResult result =
     case result of
         Ok pc ->
@@ -165,7 +165,7 @@ constructAnnotation startSymbol endSymbol occurs configObj =
 TODO: this needs work (and thought!)
 
 -}
-buildWithReordering : List (ParserConfigObject -> ParserConfigObject) -> Result (List String) ParserConfig
+buildWithReordering : List (ParserConfigObject -> ParserConfigObject) -> Result (List String) Config
 buildWithReordering builders =
     let
         parserConfig =
@@ -248,7 +248,7 @@ transmitErrorOfStartSymbolPrefix startSymbol configObj =
 -- MINIMAL CONFIGURATION
 
 
-startSymbols : ParserConfig -> List String
+startSymbols : Config -> List String
 startSymbols config =
     List.map .startSymbol config.annotationOpts
 
@@ -283,7 +283,7 @@ basicVerbatimOpts =
     Set.fromList [ '`', '$' ]
 
 
-minimal : ParserConfig
+minimal : Config
 minimal =
     { verbatimOpts = basicVerbatimOpts
     , annotationOpts =
