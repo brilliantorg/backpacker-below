@@ -10,7 +10,7 @@
         "Camperdown.Parse",
         "Camperdown.Loc",
         "Camperdown.Problem",
-        "Camperdown.Config.Config"
+        "Camperdown.Config"
     ],
     "elm-version": "0.19.1 <= v < 0.20.0",
     "dependencies": {
