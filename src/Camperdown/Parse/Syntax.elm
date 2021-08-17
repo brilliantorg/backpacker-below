@@ -1,8 +1,32 @@
-module Camperdown.Parse.Syntax exposing (Command, Config, Divert(..), Document, Element(..), Label(..), Mark(..), Markup, Parameter, Section, Text(..), Value(..))
+module Camperdown.Parse.Syntax exposing
+    ( Command
+    , Config
+    , Divert(..)
+    , Document
+    , Element(..)
+    , Label(..)
+    , Mark(..)
+    , Markup
+    , Parameter
+    , Section
+    , Text(..)
+    , Value(..)
+    )
 
 {-| Placeholder
 
-@docs Command, Config, Divert, Document, Element, Label, Mark, Markup, Parameter, Section, Text, Value
+@docs Command
+@docs Config
+@docs Divert
+@docs Document
+@docs Element
+@docs Label
+@docs Mark
+@docs Markup
+@docs Parameter
+@docs Section
+@docs Text
+@docs Value
 
 -}
 
