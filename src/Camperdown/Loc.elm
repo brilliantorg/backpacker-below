@@ -1,6 +1,16 @@
 module Camperdown.Loc exposing
-    ( Loc, Location, Position
-    , end, locate, location, map, start, todoDummyLocate, todoDummyLocation, todoDummyPosition, value
+    ( Loc
+    , Location
+    , Position
+    , end
+    , locate
+    , location
+    , map
+    , start
+    , todoDummyLocate
+    , todoDummyLocation
+    , todoDummyPosition
+    , value
     )
 
 {-|
@@ -8,12 +18,22 @@ module Camperdown.Loc exposing
 
 # Types
 
-@docs Loc, Location, Position
+@docs Loc
+@docs Location
+@docs Position
 
 
 # Functions
 
-@docs end, locate, location, map, start, todoDummyLocate, todoDummyLocation, todoDummyPosition, value
+@docs end
+@docs locate
+@docs location
+@docs map
+@docs start
+@docs todoDummyLocate
+@docs todoDummyLocation
+@docs todoDummyPosition
+@docs value
 
 -}
 

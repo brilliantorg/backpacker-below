@@ -1,4 +1,4 @@
-module Camperdown.Util exposing (Parser, loop, offsetIndexedMap, oneIndexedMap, return, select)
+module Camperdown.Util exposing (Parser, loop, offsetIndexedMap, oneIndexedMap, return)
 
 import Parser.Advanced as Parser
 
@@ -11,15 +11,6 @@ offsetIndexedMap k f =
 oneIndexedMap : (Int -> a -> b) -> List a -> List b
 oneIndexedMap =
     offsetIndexedMap 1
-
-
-select : Bool -> a -> a -> a
-select test x y =
-    if test then
-        x
-
-    else
-        y
 
 
 {-| Type of a parser where failure's not an option.
