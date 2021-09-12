@@ -1,7 +1,7 @@
 {
-  "checks": {
-    "ImportAll": false,
-    "SingleFieldRecord": false,
-    "MultiLineRecordFormatting": false
-  }
+    "checks": {
+        "ImportAll": false,
+        "SingleFieldRecord": false,
+        "MultiLineRecordFormatting": false
+    }
 }
