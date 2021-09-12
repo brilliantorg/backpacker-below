@@ -35,6 +35,7 @@ module Camperdown.Loc exposing
 @docs todoDummyLocation
 @docs todoDummyPosition
 @docs value
+@docs encodeLocation
 
 -}
 
@@ -114,6 +115,8 @@ todoDummyLocate =
     locate todoDummyPosition todoDummyPosition
 
 
+{-| Encodes a Location as a JSON value.
+-}
 encodeLocation : Location -> Encode.Value
 encodeLocation loc =
     Encode.object
