@@ -11,6 +11,7 @@ module Camperdown.Loc exposing
     , todoDummyLocation
     , todoDummyPosition
     , value
+    , encodeLocation
     )
 
 {-|
@@ -36,6 +37,8 @@ module Camperdown.Loc exposing
 @docs value
 
 -}
+
+import Json.Encode as Encode
 
 
 {-| -}
@@ -109,3 +112,21 @@ todoDummyLocation =
 todoDummyLocate : a -> Loc a
 todoDummyLocate =
     locate todoDummyPosition todoDummyPosition
+
+
+encodeLocation : Location -> Encode.Value
+encodeLocation loc =
+    Encode.object
+        [ ( "start"
+          , Encode.object
+                [ ( "line", Encode.int loc.start.line )
+                , ( "column", Encode.int loc.start.column )
+                ]
+          )
+        , ( "end"
+          , Encode.object
+                [ ( "line", Encode.int loc.end.line )
+                , ( "column", Encode.int loc.end.column )
+                ]
+          )
+        ]
