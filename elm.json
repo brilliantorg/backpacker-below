@@ -3,7 +3,7 @@
     "name": "brilliantorg/backpacker-below",
     "summary": "Unstable alpha version of a parser for the Camperdown markup language.",
     "license": "BSD-3-Clause",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "exposed-modules": [
         "Camperdown.Occurs",
         "Camperdown.Parse.Syntax",
